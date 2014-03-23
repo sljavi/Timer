@@ -1,0 +1,276 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 700px;
+  }
+}
+
+/*
+ * 
+ */
+h1 button.btn-info {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+#timer {
+ padding: 0 4%; 
+}
+
+#timer .timerContainer {
+  background: #222;
+  border-radius: 2mm;
+  padding: 3mm;
+  box-shadow: 1mm 1mm 2mm #111;
+  margin-bottom: 4mm;
+}
+
+#timer .timerContainer form input {
+  width: 96%;
+  margin: 5mm 0;
+  padding: 2%;
+}
+
+#timer .timerContainer .time {
+  font-family: sans-serif;
+  font-size: 9mm;  
+}
+
+#timer button {
+  box-shadow: 1mm 1mm 1mm #222;
+  border-color: #333;
+}
+
+#timeEntries {
+  float: left;
+  width: 100%;
+}
+
+#timeEntries * {
+  float: left;
+}
+
+#timeEntries ul {
+  width: 100%;
+  padding: 4%;
+}
+
+#timeEntries li {
+  border-left: 2px solid #ccc;
+  list-style: none;
+  margin-bottom: 3mm;
+  padding-left: 5px;
+  clear: both;
+  width: 100%;
+  padding: 1mm;
+}
+
+#timeEntries li:hover {
+  border-left: 3px solid #ccc;
+  padding-left: 4px;
+  background: #444;
+}
+
+#timeEntries button {
+  float: right;
+}
+
+#timeEntries button {
+  color: #ffffff; 
+  background-color: #555; 
+  border-color: #444;
+}
+#timeEntries button:hover,
+#timeEntries button:focus,
+#timeEntries button:active, 
+#timeEntries button.active{ 
+  color: #ffffff; 
+  background-color: #666; 
+  border-color: #555;
+}
+
+#timeEntries li .time {
+  margin-right: 2mm;
+}
+
+#timeEntries li .comment {
+  text-align: left;
+}
+
+#about, #about a {
+  color: #222;
+  text-shadow: 0 0 1px #ccc;
+}
+
+#about .tab a {
+  color: #4183c4;
+}
+
+#about .info {
+  text-align: left;
+  padding: 5mm;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+#about .info .row {
+  text-align: center;
+}
+
+#about .info .tests p, #about .info .reports p, #about .info .author p {
+  float: left;
+}
+
+#about .info .tests img, #about .info .reports img, #about .info .author img {
+  float: left;
+  margin-right: 4mm;
+}
