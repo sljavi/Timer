@@ -28,7 +28,7 @@
     "Require.js",
     "Backbone and Require Boilerplate"
   ],
-  "devDependencies": {
+  "dependencies": {
     "express": "3.x",
     "grunt": "~0.4.1",
     "grunt-contrib-requirejs": "~0.4.0",
