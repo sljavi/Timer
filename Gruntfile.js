@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   var amdclean = require('amdclean'),
     fs = require('fs'),
     amdcleanLogic = function (data) {
@@ -9,9 +9,8 @@ module.exports = function(grunt) {
         'globalObjectName': 'BRB',
         'rememberGlobalObject': false,
         'removeModules': ['text'],
-        'prefixTransform': function(moduleName) {
-          return moduleName.substring(moduleName.lastIndexOf('_') + 1, moduleName.length);
-        },
+        'prefixMode': 'standard',
+        'prefixTransform': function (moduleName) { return moduleName; },
         'wrap': {
           'start': '(function() {\n',
           'end': '\n}());'
@@ -83,20 +82,20 @@ module.exports = function(grunt) {
     plato: {
       your_task: {
         options : {
-            exclude: /\.min\.js$/    // excludes source files finishing with ".min.js"
+          exclude: /\.min\.js$/    // excludes source files finishing with ".min.js"
         },
         files: {
-            'public/reports': ['public/js/app/**/*.js']
+          'public/reports': ['public/js/app/**/*.js']
         }
       }
     }
   });
 
-  grunt.registerTask('desktopBuild', function() {
+  grunt.registerTask('desktopBuild', function () {
     grunt.task.run(['requirejs:desktopJS', 'requirejs:desktopCSS']);
   });
 
-  grunt.registerTask('mobileBuild', function() {
+  grunt.registerTask('mobileBuild', function () {
     grunt.task.run(['requirejs:mobileJS', 'requirejs:mobileCSS']);
   });
 
