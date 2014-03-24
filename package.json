@@ -1,25 +1,25 @@
 {
-  "name": "Backbone-Require-Boilerplate",
-  "title": "Backbone and Require Boilerplate",
-  "description": "A Backbone.js and Require.js Boilerplate that promotes decoupling your JavaScript into modules, separating business logic from application logic using Models and Views, reusing your JavaScript between Desktop and Mobile Web versions, including non-AMD Compatible Third Party Scripts in your project, and optimizing all of your JavaScript (minify, concatenate, etc).",
+  "name": "Timer",
+  "title": "Timer - keep your time records",
+  "description": "keep your time records",
   "version": "1.8.0",
-  "homepage": "https://github.com/gfranko/Backbone-Require-Boilerplate",
+  "homepage": "https://github.com/sljavi/Timer",
   "author": {
-    "name": "Greg Franko",
-    "email": "gfranko5@yahoo.com",
-    "url": "http://www.gregfranko.com"
+    "name": "Javier Perez",
+    "email": "javierperez@hacemosweb.com",
+    "url": "http://www.javierperez.com-ar"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:gfranko/Backbone-Require-Boilerplate.git"
+    "url": "git@github.com:sljavi/Timer.git"
   },
   "bugs": {
-    "url": "https://github.com/gfranko/Backbone-Require-Boilerplate/issues"
+    "url": "https://github.com/sljavi/Timer/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/gfranko/Backbone-Require-Boilerplate/blob/master/LICENSE-MIT"
+      "url": "https://github.com/sljavi/Timer/blob/master/LICENSE"
     }
   ],
   "main": "./server/server",
