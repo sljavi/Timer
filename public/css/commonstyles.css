@@ -266,11 +266,11 @@ h1 button.btn-info {
   text-align: center;
 }
 
-#about .info .tests p, #about .info .reports p, #about .info .author p {
+#about .info .reports p, #about .info .author p {
   float: left;
 }
 
-#about .info .tests img, #about .info .reports img, #about .info .author img {
+#about .info .reports img, #about .info .author img {
   float: left;
   margin-right: 4mm;
 }
