@@ -45,11 +45,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
-      <p class="stat">74.49</p>
+      <p class="stat">74.37</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
-      <p class="stat">107</p>
+      <p class="stat">127</p>
     </div>
   </div>
   <div class="row historical">
@@ -63,11 +63,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
-      <p class="stat">14.86</p>
+      <p class="stat">20.49</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
-      <p class="stat">0.60</p>
+      <p class="stat">0.77</p>
     </div>
   </div>
 </div>
@@ -101,8 +101,11 @@ define([&quot;jquery&quot;, &quot;backbone&quot;, &quot;views/TimeEntry&quot;, &
       // The DOM Element associated with this view
       el: &quot;#timer&quot;,
 
-      //The miliseconds count
-      miliseconds: 0,
+      // The miliseconds count
+      miliseconds: [],
+
+      // The timestamp when the count starts
+      initialMiliseconds: 0,
 
       //The interval object, used it to track the senconds
       interval: null,
@@ -149,8 +152,8 @@ define([&quot;jquery&quot;, &quot;backbone&quot;, &quot;views/TimeEntry&quot;, &
 
       play: function () {
         var self = this;
+        this.initialMiliseconds = new Date().getTime();
         this.interval = setInterval(function () {
-          self.miliseconds += 10;
           self.refreshTime();
         }, 10);
       },
@@ -158,17 +161,34 @@ define([&quot;jquery&quot;, &quot;backbone&quot;, &quot;views/TimeEntry&quot;, &
       pause: function () {
         clearInterval(this.interval);
         this.interval = null;
+        this.miliseconds.push(new Date().getTime() - this.initialMiliseconds);
       },
 
       refreshTime: function () {
-        var time = TimeEntryView.getTime(this.miliseconds);
+        var miliseconds, time;
+
+        miliseconds = _.reduce(this.miliseconds, function (memo, num) {
+          return memo + num;
+        }, 0);
+
+        miliseconds += new Date().getTime() - this.initialMiliseconds;
+
+        this.setTimer(miliseconds);
+      },
+
+      clearTimer: function () {
+        this.setTimer(0);
+      },
+
+      setTimer: function (miliseconds) {
+        var time = TimeEntryView.getTime(miliseconds);
         this.$time.html(time);
       },
 
       handleReset: function () {
         this.pause();
-        this.miliseconds = 0;
-        this.refreshTime();
+        this.miliseconds = [];
+        this.clearTimer();
         this.hideForm();
       },
 
