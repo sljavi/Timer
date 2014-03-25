@@ -9,8 +9,11 @@ define(["jquery", "backbone", "views/TimeEntry", "text!templates/timer.html"],
       // The DOM Element associated with this view
       el: "#timer",
 
-      //The miliseconds count
-      miliseconds: 0,
+      // The miliseconds count
+      miliseconds: [],
+
+      // The timestamp when the count starts
+      initialMiliseconds: 0,
 
       //The interval object, used it to track the senconds
       interval: null,
@@ -57,8 +60,8 @@ define(["jquery", "backbone", "views/TimeEntry", "text!templates/timer.html"],
 
       play: function () {
         var self = this;
+        this.initialMiliseconds = new Date().getTime();
         this.interval = setInterval(function () {
-          self.miliseconds += 10;
           self.refreshTime();
         }, 10);
       },
@@ -66,17 +69,34 @@ define(["jquery", "backbone", "views/TimeEntry", "text!templates/timer.html"],
       pause: function () {
         clearInterval(this.interval);
         this.interval = null;
+        this.miliseconds.push(new Date().getTime() - this.initialMiliseconds);
       },
 
       refreshTime: function () {
-        var time = TimeEntryView.getTime(this.miliseconds);
+        var miliseconds, time;
+
+        miliseconds = _.reduce(this.miliseconds, function (memo, num) {
+          return memo + num;
+        }, 0);
+
+        miliseconds += new Date().getTime() - this.initialMiliseconds;
+
+        this.setTimer(miliseconds);
+      },
+
+      clearTimer: function () {
+        this.setTimer(0);
+      },
+
+      setTimer: function (miliseconds) {
+        var time = TimeEntryView.getTime(miliseconds);
         this.$time.html(time);
       },
 
       handleReset: function () {
         this.pause();
-        this.miliseconds = 0;
-        this.refreshTime();
+        this.miliseconds = [];
+        this.clearTimer();
         this.hideForm();
       },
 
