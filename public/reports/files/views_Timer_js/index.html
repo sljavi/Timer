@@ -45,11 +45,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
-      <p class="stat">74.37</p>
+      <p class="stat">74.70</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
-      <p class="stat">127</p>
+      <p class="stat">129</p>
     </div>
   </div>
   <div class="row historical">
@@ -63,11 +63,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
-      <p class="stat">20.49</p>
+      <p class="stat">20.96</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
-      <p class="stat">0.77</p>
+      <p class="stat">0.82</p>
     </div>
   </div>
 </div>
@@ -160,20 +160,21 @@ define([&quot;jquery&quot;, &quot;backbone&quot;, &quot;views/TimeEntry&quot;, &
 
       pause: function () {
         clearInterval(this.interval);
-        this.interval = null;
         this.miliseconds.push(new Date().getTime() - this.initialMiliseconds);
+        this.interval = null;
       },
 
       refreshTime: function () {
-        var miliseconds, time;
+        this.setTimer(this.getLapsedMiliseconds());
+      },
 
+      getLapsedMiliseconds: function () {
+        var miliseconds;
         miliseconds = _.reduce(this.miliseconds, function (memo, num) {
           return memo + num;
         }, 0);
-
         miliseconds += new Date().getTime() - this.initialMiliseconds;
-
-        this.setTimer(miliseconds);
+        return miliseconds;
       },
 
       clearTimer: function () {
@@ -183,6 +184,7 @@ define([&quot;jquery&quot;, &quot;backbone&quot;, &quot;views/TimeEntry&quot;, &
       setTimer: function (miliseconds) {
         var time = TimeEntryView.getTime(miliseconds);
         this.$time.html(time);
+        this.$time.prop(&#039;miliseconds&#039;, miliseconds);
       },
 
       handleReset: function () {
@@ -205,7 +207,7 @@ define([&quot;jquery&quot;, &quot;backbone&quot;, &quot;views/TimeEntry&quot;, &
 
       handleAddNewTimeEntry: function () {
         this.attributes.timeEntries.create({
-          miliseconds: this.miliseconds,
+          miliseconds: this.$time.prop(&#039;miliseconds&#039;),
           comment: this.$el.find(&#039;form input&#039;).prop(&#039;value&#039;)
         });
         return false;
