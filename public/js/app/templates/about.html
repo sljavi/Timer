@@ -8,17 +8,17 @@
       <div class="modal-body">
         <ul class="nav nav-tabs nav-justified">
           <li class="active">
-            <a href="#" target="application">Application</a>
+            <a href="#application" data-toggle="tab">Application</a>
           </li>
           <li>
-            <a href="#" target="reports">Reports</a>
+            <a href="#reports" data-toggle="tab">Reports</a>
           </li>
           <li>
-            <a href="#" target="author">Author</a>
+            <a href="#author" data-toggle="tab">Author</a>
           </li>
         </ul>
-        <div class="info">
-          <div class="application tab">
+        <div class="info tab-content">
+          <div class="tab tab-pane fade in active" id="application">
             <p>Application built mainly using</p>
             <ul>
               <li>
@@ -33,7 +33,7 @@
               </li>
             </ul>
             <p>
-              Look at the project <a href="https://github.com/" target="_blank" title="Timer Project">
+              Look at the project <a href="https://github.com/sljavi/Timer" target="_blank" title="Timer Project">
                 on github
               </a>
             </p>
@@ -44,7 +44,7 @@
               <div class="col-xs-12 col-sm-3"><img src="img/github.png" alt="Github"/></div>
             </div>
           </div>
-          <div class="reports tab" style="display:none">
+          <div class="reports tab fade tab-pane" id="reports">
             <p>
               <img src="img/plato.png" alt="Plato"/> Look at the 
               <a href="reports/index.html" target="_blank" title="JavaScript Source Analysis page">
@@ -52,7 +52,7 @@
               </a>
             </p>
           </div>
-          <div class="author tab" style="display:none">
+          <div class="author tab fade tab-pane" id="author">
             <p>
               <img src="img/javier.png" alt="Javier Perez" class="img-circle"/> 
               Application built by 
