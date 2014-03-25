@@ -68,20 +68,21 @@ define(["jquery", "backbone", "views/TimeEntry", "text!templates/timer.html"],
 
       pause: function () {
         clearInterval(this.interval);
-        this.interval = null;
         this.miliseconds.push(new Date().getTime() - this.initialMiliseconds);
+        this.interval = null;
       },
 
       refreshTime: function () {
-        var miliseconds, time;
+        this.setTimer(this.getLapsedMiliseconds());
+      },
 
+      getLapsedMiliseconds: function () {
+        var miliseconds;
         miliseconds = _.reduce(this.miliseconds, function (memo, num) {
           return memo + num;
         }, 0);
-
         miliseconds += new Date().getTime() - this.initialMiliseconds;
-
-        this.setTimer(miliseconds);
+        return miliseconds;
       },
 
       clearTimer: function () {
@@ -91,6 +92,7 @@ define(["jquery", "backbone", "views/TimeEntry", "text!templates/timer.html"],
       setTimer: function (miliseconds) {
         var time = TimeEntryView.getTime(miliseconds);
         this.$time.html(time);
+        this.$time.prop('miliseconds', miliseconds);
       },
 
       handleReset: function () {
@@ -113,7 +115,7 @@ define(["jquery", "backbone", "views/TimeEntry", "text!templates/timer.html"],
 
       handleAddNewTimeEntry: function () {
         this.attributes.timeEntries.create({
-          miliseconds: this.miliseconds,
+          miliseconds: this.$time.prop('miliseconds'),
           comment: this.$el.find('form input').prop('value')
         });
         return false;
