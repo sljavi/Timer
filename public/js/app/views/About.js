@@ -19,7 +19,7 @@ define(["jquery", "backbone", "text!templates/about.html"],
 
       // View Event Handlers
       events: {
-        "click #about ul.nav-tabs a": "showTab"
+
       },
 
       // Renders the view's template to the UI
@@ -42,16 +42,8 @@ define(["jquery", "backbone", "text!templates/about.html"],
 
       close: function () {
         $('#about').modal({show: false});
-      },
-
-      showTab: function (event) {
-        var classTabToShow = $(event.target).prop('target');
-        this.$('ul.nav-tabs li').removeClass('active');
-        $(event.target).parent().addClass('active');
-        this.$('div.info div.tab').slideUp();
-        this.$('div.info div.' + classTabToShow).slideDown();
-        return false;
       }
+
     });
 
     // Returns the View class
