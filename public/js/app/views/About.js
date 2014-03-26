@@ -34,14 +34,6 @@ define(["jquery", "backbone", "text!templates/about.html"],
         // Maintains chainability
         return this;
 
-      },
-
-      open: function () {
-        $('#about').modal({show: true});
-      },
-
-      close: function () {
-        $('#about').modal({show: false});
       }
 
     });
